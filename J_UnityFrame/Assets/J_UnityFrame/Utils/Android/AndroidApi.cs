@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public  static  class AndroidApi
+namespace J_Framework.Utils
 {
 
-    /// <summary>
-    /// 获取路径
-    /// </summary>
-    /// <returns></returns>
-    public static string GetPath()
+    public static class AndroidApi
     {
-        string path;
-#if UNITY_EDITOR||UNITY_STANDALONE_WIN
-        //Editor
-        path = "file://" + Application.dataPath + "/StreamingAssets/";
-        //Application.dataPath;        
+
+        /// <summary>
+        /// 获取路径
+        /// </summary>
+        /// <returns></returns>
+        public static string GetPath()
+        {
+            string path;
+#if UNITY_EDITOR || UNITY_STANDALONE_WIN
+            //Editor
+            path = "file://" + Application.dataPath + "/StreamingAssets/";
+            //Application.dataPath;        
 #elif UNITY_ANDROID
         //Android
         path = "jar:file://" + Application.dataPath + "!/assets/";
@@ -24,15 +27,15 @@ public  static  class AndroidApi
 #else
         //IPhone
 #endif
-        return path;
-    }
+            return path;
+        }
 
-    /// <summary>
-    /// 手机震动
-    /// </summary>
-    /// 调用一次震动0.5s
-    public static void Shake()
-    {
+        /// <summary>
+        /// 手机震动
+        /// </summary>
+        /// 调用一次震动0.5s
+        public static void Shake()
+        {
 #if UNITY_EIDOTR
 
 #elif UNITY_ANDROID
@@ -40,19 +43,19 @@ public  static  class AndroidApi
 #elif UNITY_IPHONE
         iPhoneUtils.Vibrate()
 #endif
-    }
+        }
 
-    public static void Shake(float time)
-    {
-        //需要调用android接口
-    }
+        public static void Shake(float time)
+        {
+            //需要调用android接口
+        }
 
-    /// <summary>
-    /// 调安卓原生信息弹窗
-    /// </summary>
-    /// <param name="info"></param>
-    public static void MakeToast(string info)
-    {
+        /// <summary>
+        /// 调安卓原生信息弹窗
+        /// </summary>
+        /// <param name="info"></param>
+        public static void MakeToast(string info)
+        {
 
 
 #if UNITY_EDITOR
@@ -77,88 +80,90 @@ public  static  class AndroidApi
           
         }
 #endif
-    }
-
-
-    public static string DeviceModel
-    {
-        get
-        {
-            return SystemInfo.deviceModel;
         }
-    }
 
-    public static string DeviceName
-    {
-        get
-        {
-            return SystemInfo.deviceName;
-        }
-    }
 
-    public static string DiviceType
-    {
-        get
+        public static string DeviceModel
         {
-            string typeName = null;
-            var mType = SystemInfo.deviceType;
-            switch (mType)
+            get
             {
-                case DeviceType.Unknown:
-                    typeName = "Unknown";
-                    break;
-                case DeviceType.Handheld:
-                    typeName = "A handheld device like mobile phone or a tablet";
-                    break;
-                case DeviceType.Console:
-                    typeName = "A stationary gaming console";
-                    break;
-                case DeviceType.Desktop:
-                    typeName = "Desktop or laptop computer";
-                    break;
-                default:
-                    break;
+                return SystemInfo.deviceModel;
             }
-            return typeName;
         }
-    }
 
-    public static string IMEI
-    {
-        get
+        public static string DeviceName
         {
-            return SystemInfo.deviceUniqueIdentifier;
+            get
+            {
+                return SystemInfo.deviceName;
+            }
         }
-    }
-    /// <summary>
-    /// 操作系统
-    /// </summary>
-    public static string OperatingSystem
-    {
-        get
-        {           
-            return SystemInfo.operatingSystem;
-        }
-    }
 
-
-    /// <summary>
-    /// 复制
-    /// </summary>
-    /// <param name="mstr"></param>
-    public static void AsCopyString(this string mstr)
-    {
-        GUIUtility.systemCopyBuffer = mstr;        
-    }
-
-    /// <summary>
-    /// 粘贴
-    /// </summary>
-    public static string GetCopyString
-    {
-        get
+        public static string DiviceType
         {
-            return GUIUtility.systemCopyBuffer;
-        }       
+            get
+            {
+                string typeName = null;
+                var mType = SystemInfo.deviceType;
+                switch (mType)
+                {
+                    case DeviceType.Unknown:
+                        typeName = "Unknown";
+                        break;
+                    case DeviceType.Handheld:
+                        typeName = "A handheld device like mobile phone or a tablet";
+                        break;
+                    case DeviceType.Console:
+                        typeName = "A stationary gaming console";
+                        break;
+                    case DeviceType.Desktop:
+                        typeName = "Desktop or laptop computer";
+                        break;
+                    default:
+                        break;
+                }
+                return typeName;
+            }
+        }
+
+        public static string IMEI
+        {
+            get
+            {
+                return SystemInfo.deviceUniqueIdentifier;
+            }
+        }
+        /// <summary>
+        /// 操作系统
+        /// </summary>
+        public static string OperatingSystem
+        {
+            get
+            {
+                return SystemInfo.operatingSystem;
+            }
+        }
+
+
+        /// <summary>
+        /// 复制
+        /// </summary>
+        /// <param name="mstr"></param>
+        public static void AsCopyString(this string mstr)
+        {
+            GUIUtility.systemCopyBuffer = mstr;
+        }
+
+        /// <summary>
+        /// 粘贴
+        /// </summary>
+        public static string GetCopyString
+        {
+            get
+            {
+                return GUIUtility.systemCopyBuffer;
+            }
+        }
     }
+
 }
