@@ -22,6 +22,7 @@ namespace J_Framework.ResKit
         }
 
         private Dictionary<string, Res> mDic_Res = new Dictionary<string, Res>();
+       
 
         public void AddData(string assetPathOrName, Res res)
         {
